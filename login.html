@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <span>Username: </span>
+    
+    <input type="text" id="username" />
+    <br>
+    <span>Password: </span>
+    <input type="password" id="password" />
+    <br />
+    <button type="submit" id="logInButton">Log In</button>
+    <br />
+    <span>Need account ?</span> <a href="./reg.html">Sign Up</a>
+    <p id="warningMessage"></p>
+    <script>
+      document.getElementById("logInButton").addEventListener("click", () => {
+        const userPass = document.getElementById("password").value;
+        const userName = document.getElementById("username").value;
+
+        
+        
+        
+        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+        let isThisUserFound = false;
+        userInfo?.forEach((user) => {
+          console.log( user.name , userName);
+          if ((user.name == userName) && (user.password == userPass)) {
+            isThisUserFound = true;
+          }
+        });
+
+        console.log("is this = ", isThisUserFound);
+        if(isThisUserFound === true) {
+          localStorage.setItem("currentActiveUser", userName);
+          window.location.href = "index.html";
+ 
+        }
+        else {
+
+          
+          document.getElementById("warningMessage").innerText = "Sorry can't find username or password, try again";
+          setInterval(() => {
+            document.getElementById("warningMessage").innerText ="";
+          }, 1000);
+        }
+
+
+      });
+    </script>
+  </body>
+</html>

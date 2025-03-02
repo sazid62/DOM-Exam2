@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <span>New User Name: </span>
+    <input type="text" id="username" />
+    <br />
+    <span>New User Password: </span>
+    <input type="password" id="password" />
+    <br />
+    <button type=" " id="createAccButton">Crete Account</button>
+    <p id="warningMessage"></p>
+
+    <span>Already Have Account? </span>
+    <a href="./login.html">Log In</a>
+
+    <script>
+       
+
+      document
+        .getElementById("createAccButton")
+        .addEventListener("click", () => {
+          const userName = document.getElementById("username").value;
+          const Userpassword = document.getElementById("password").value;
+
+          let userInfo = JSON.parse(localStorage.getItem("userInfo")) || [{}];
+
+          console.log("user: ", userInfo);
+          let foundPrevUser = false;
+          if ((userName.length >= 1) & (userName.length >= 1)) {
+            userInfo.forEach((user) => {
+              if (user.name == userName) {
+                foundPrevUser = true;
+              }
+            });
+          }
+
+          if (foundPrevUser == true) {
+                document.getElementById("warningMessage").innerText =
+              "Sorry This UserName Already Exist, Try Again Please!";
+              setTimeout(() => {
+                  
+
+                        document.getElementById("warningMessage").innerText = "";
+
+            }, 1000);
+
+
+          } else if ((userName.length >= 1) && (userName.length >= 1)) {
+            userInfo.push({
+              name: userName,
+              password: Userpassword
+            });
+            localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+
+
+            document.getElementById("warningMessage").innerText =
+            "YEsssssssssssss, Succesfull created. Redirecting To LogIn page"
+              setTimeout(() => {
+                  
+                    
+                        document.getElementById("warningMessage").innerText = "";
+                        window.location.href = "login.html";
+
+            }, 1000);
+          }
+          else {
+            document.getElementById("warningMessage").innerText =
+            " Please fill up the form correctly";
+              setTimeout(() => {
+                  
+                    
+                        document.getElementById("warningMessage").innerText = "";
+                         
+
+            }, 1000);
+          }
+        });
+    </script>
+  </body>
+</html>
