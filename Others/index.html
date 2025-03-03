@@ -59,9 +59,9 @@
 
     setInterval(() => {
       localStorage.removeItem("currentActiveUser");
-      document.querySelector("body").innerHTML = "<h1>Your Session Time out!</h1>";
+      document.querySelector("body").innerHTML = "<h1 >Your Session Time out!</h1>";
 
-    }, 1000 * 20);
+    }, 1000 * 180);
     // window.location.href = "index.html";
     let currentActiveUser = localStorage.getItem("currentActiveUser");
     if (currentActiveUser == null) {
