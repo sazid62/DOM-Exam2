@@ -46,6 +46,8 @@
         console.log("is this = ", isThisUserFound);
         if(isThisUserFound === true) {
           localStorage.setItem("currentActiveUser", userName);
+          localStorage.setItem("currentActiveUserTime", JSON.stringify(Date.now()));
+          
           window.location.href = "./Others/index.html";
  
         }

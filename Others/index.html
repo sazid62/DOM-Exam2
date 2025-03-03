@@ -10,6 +10,7 @@
 <body style="background-color:cornsilk; padding: 20px; ;">
   <div class="timer" style="text-align: end; margin-bottom: 0px;">
     <h1 style="font-size: xx-large; color: rgb(250, 38, 38);" id="time" > </h1>
+ 
   </div>
 
   <h1 id="welcome" style="font-size: 50px;  text-align: center; color:rgb(3, 50, 138) ; padding: 10px;"></h1>
@@ -23,7 +24,7 @@
       </div>
       
     </div>
-  <p id="warningMessageAddMoney " style="padding: 10px; color: brown;"></p>
+  <p id="warningMessageAddMoney " style="padding: 10px; color: brown; text-align: center;"></p>
   <h3 id="totalSpendOnShopping" style=" padding: 10px;background-color: aquamarine;"> </h3>
   <h3 id="shoppingMoney"> </h3>
   <div style="background-color:violet; padding: 10px;">
@@ -57,7 +58,7 @@
   <script>
     
 
-    const now = Date.now() + 30  * 1000;
+    const now = JSON.parse(localStorage.getItem("currentActiveUserTime")) + 70  * 1000;
 
     setInterval(()=> {
      console.log("YEee");
@@ -71,6 +72,13 @@
   if(minutes < 10) minutes = "0" + minutes;
   if(seconds < 10) seconds = "0" + seconds;
    document.getElementById("time").innerText = `Your Session time ${minutes} : ${seconds}s remaining`;
+
+
+   if(diff < 1000) {
+    localStorage.removeItem("currentActiveUser");
+    localStorage.removeItem("currentActiveUserTime");
+    document.querySelector("body").innerHTML = "<h1 >Your Session Time out!</h1>";
+   }
 
 }, 1000);
  
@@ -87,13 +95,7 @@
     }
     console.log(currentTime());
 
-
-    setTimeout(() => {
-
-      localStorage.removeItem("currentActiveUser");
-      document.querySelector("body").innerHTML = "<h1 >Your Session Time out!</h1>";
-
-    }, 1000 * 30);
+ 
     // window.location.href = "index.html";
     let currentActiveUser = localStorage.getItem("currentActiveUser");
     if (currentActiveUser == null) {
