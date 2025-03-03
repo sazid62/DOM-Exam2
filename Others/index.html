@@ -58,26 +58,33 @@
   <script>
     
 
-    const now = JSON.parse(localStorage.getItem("currentActiveUserTime")) + 70  * 1000;
+    const now = JSON.parse(localStorage.getItem("currentActiveUserTime")) + (70  * 1000);
 
-    setInterval(()=> {
-     console.log("YEee");
+    let intervalID = setInterval(()=> {
+    //  console.log("YEee");
   let diff =   now - Date.now();
-   let minutes = Math.floor ((diff) / (60 * 1000));
-   diff -= minutes * (60 * 1000);
+ 
+   let minutes = Math.floor ((diff) / (  1000 * 60));
+
    
    
    
-   let seconds = Math.floor ( diff / 1000);
-  if(minutes < 10) minutes = "0" + minutes;
-  if(seconds < 10) seconds = "0" + seconds;
-   document.getElementById("time").innerText = `Your Session time ${minutes} : ${seconds}s remaining`;
+   let seconds = Math.floor   ((diff -  ( minutes * (1000 * 60)) )/ 1000);
+      console.log("dif = ", diff );
+      console.log("Mn = ", minutes );
+      console.log("sec = ", seconds );
+   if(minutes < 10) minutes = "0" + minutes;
+   if(seconds < 10) seconds = "0" + seconds;
+
+ 
+   document.getElementById("time").innerHTML = `Your Session time ${minutes} : ${seconds}s remaining`;
 
 
-   if(diff < 1000) {
+   if(diff <= 0) {
     localStorage.removeItem("currentActiveUser");
     localStorage.removeItem("currentActiveUserTime");
     document.querySelector("body").innerHTML = "<h1 >Your Session Time out!</h1>";
+    clearInterval(intervalID);
    }
 
 }, 1000);
