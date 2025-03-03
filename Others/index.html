@@ -8,6 +8,10 @@
 </head>
 
 <body style="background-color:cornsilk; padding: 20px; ;">
+  <div class="timer" style="text-align: end; margin-bottom: 0px;">
+    <h1 style="font-size: xx-large; color: rgb(250, 38, 38);" id="time" > </h1>
+  </div>
+
   <h1 id="welcome" style="font-size: 50px;  text-align: center; color:rgb(3, 50, 138) ; padding: 10px;"></h1>
   <div style="flex-wrap:wrap; background-color: pink; padding: 10px;">
 
@@ -48,28 +52,56 @@
       </div>
   </div>
 
+   
 
   <script>
+    
+
+    const now = Date.now() + 30  * 1000;
+
+    setInterval(()=> {
+     console.log("YEee");
+  let diff =   now - Date.now();
+   let minutes = Math.floor ((diff) / (60 * 1000));
+   diff -= minutes * (60 * 1000);
+   
+   
+   
+   let seconds = Math.floor ( diff / 1000);
+  if(minutes < 10) minutes = "0" + minutes;
+  if(seconds < 10) seconds = "0" + seconds;
+   document.getElementById("time").innerText = `Your Session time ${minutes} : ${seconds}s remaining`;
+
+}, 1000);
+ 
+
+
+
+
 
     function currentTime() {
       let time = new Date();
+       
       return time;
+
     }
+    console.log(currentTime());
 
 
-    setInterval(() => {
+    setTimeout(() => {
+
       localStorage.removeItem("currentActiveUser");
       document.querySelector("body").innerHTML = "<h1 >Your Session Time out!</h1>";
 
-    }, 1000 * 180);
+    }, 1000 * 30);
     // window.location.href = "index.html";
     let currentActiveUser = localStorage.getItem("currentActiveUser");
     if (currentActiveUser == null) {
       document.querySelector("body").innerHTML = "<h1>OOps sorry, Log In first</h1>";
-      setInterval(() => {
+      setTimeout(() => {
 
         document.querySelector("body").innerHTML += "<h2>Redirecting to Log in page</h1>";
-        setInterval(() => {
+        setTimeout(() => {
           window.location.href = "../index.html";
         }, 1000);
 
