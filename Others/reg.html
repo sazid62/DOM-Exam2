@@ -5,18 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <span>New User Name: </span>
-    <input type="text" id="username" />
-    <br />
-    <span>New User Password: </span>
-    <input type="password" id="password" />
-    <br />
-    <button type=" " id="createAccButton">Crete Account</button>
-    <p id="warningMessage"></p>
+  <body style="background-color: rgb(209, 245, 233); margin-top: 20%; font-size:xx-large;">
+    <h1 style="text-align: center;">Registrar Your First Account</h1>
+    <div style=" text-align: center;">
 
-    <span>Already Have Account? </span>
-    <a href="./login.html">Log In</a>
+      <span>New User Name: </span>
+      <input type="text" id="username" />
+      <br />
+      <span>New User Password: </span>
+      <input type="password" id="password" />
+      <br />
+      <button type=" " id="createAccButton">Crete Account</button>
+      <p id="warningMessage"></p>
+      
+      <span>Already Have Account? </span>
+      <a href="../login.html">Log In</a>
+    </div>
 
     <script>
        
@@ -65,7 +69,7 @@
                   
                     
                         document.getElementById("warningMessage").innerText = "";
-                        window.location.href = "login.html";
+                        window.location.href = "../login.html";
 
             }, 1000);
           }

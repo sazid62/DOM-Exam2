@@ -5,18 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <span>Username: </span>
+  <body style="background-color: rgb(115, 250, 115); margin-top: 20%; font-size:xx-large; padding: 10px;">
+
+    <div style="text-align: center; ">
+<h1>Log In To Your Account</h1>
+      <span>Username: </span>
+      
+      <input type="text" id="username" />
+      <br>
+      <span>Password: </span>
+      <input type="password" id="password" />
+      <br />
+      <button type="submit" id="logInButton">Log In</button>
+      <br />
+      <span>Need account ?</span> <a href="../Others/reg.html">Sign Up</a>
+      <p id="warningMessage"></p>
+      
+    </div>
     
-    <input type="text" id="username" />
-    <br>
-    <span>Password: </span>
-    <input type="password" id="password" />
-    <br />
-    <button type="submit" id="logInButton">Log In</button>
-    <br />
-    <span>Need account ?</span> <a href="./reg.html">Sign Up</a>
-    <p id="warningMessage"></p>
+    
+    
+    
     <script>
       document.getElementById("logInButton").addEventListener("click", () => {
         const userPass = document.getElementById("password").value;
@@ -37,7 +46,7 @@
         console.log("is this = ", isThisUserFound);
         if(isThisUserFound === true) {
           localStorage.setItem("currentActiveUser", userName);
-          window.location.href = "index.html";
+          window.location.href = "./Others/index.html";
  
         }
         else {
