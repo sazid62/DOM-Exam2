@@ -5,14 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body style="background-color: rgb(115, 250, 115); margin-top: 20%; font-size:xx-large; padding: 10px;">
-
-    <div style="text-align: center; ">
-<h1>Log In To Your Account</h1>
+  <body
+    style="
+      background-color: rgb(115, 250, 115);
+      margin-top: 20%;
+      font-size: xx-large;
+      padding: 10px;
+    "
+  >
+    <div style="text-align: center">
+      <h1>Log In To Your Account</h1>
       <span>Username: </span>
-      
+
       <input type="text" id="username" />
-      <br>
+      <br />
       <span>Password: </span>
       <input type="password" id="password" />
       <br />
@@ -20,48 +26,8 @@
       <br />
       <span>Need account ?</span> <a href="./Others/reg.html">Sign Up</a>
       <p id="warningMessage"></p>
-      
     </div>
-    
-    
-    
-    
-    <script>
-      document.getElementById("logInButton").addEventListener("click", () => {
-        const userPass = document.getElementById("password").value;
-        const userName = document.getElementById("username").value;
 
-        
-        
-        
-        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-        let isThisUserFound = false;
-        userInfo?.forEach((user) => {
-          console.log( user.name , userName);
-          if ((user.name == userName) && (user.password == userPass)) {
-            isThisUserFound = true;
-          }
-        });
-
-        console.log("is this = ", isThisUserFound);
-        if(isThisUserFound === true) {
-          localStorage.setItem("currentActiveUser", userName);
-          localStorage.setItem("currentActiveUserTime", JSON.stringify(Date.now()));
-          
-          window.location.href = "./Others/index.html";
- 
-        }
-        else {
-
-          
-          document.getElementById("warningMessage").innerText = "Sorry can't find username or password, try again";
-          setInterval(() => {
-            document.getElementById("warningMessage").innerText ="";
-          }, 1000);
-        }
-
-
-      });
-    </script>
+    <script src="./dist/script.js"></script>
   </body>
 </html>

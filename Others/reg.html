@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body style="background-color: rgb(209, 245, 233); margin-top: 20%; font-size:xx-large;">
-    <h1 style="text-align: center;">Registrar Your First Account</h1>
-    <div style=" text-align: center;">
-
+  <body
+    style="
+      background-color: rgb(209, 245, 233);
+      margin-top: 20%;
+      font-size: xx-large;
+    "
+  >
+    <h1 style="text-align: center">Registrar Your First Account</h1>
+    <div style="text-align: center">
       <span>New User Name: </span>
       <input type="text" id="username" />
       <br />
@@ -17,74 +22,11 @@
       <br />
       <button type=" " id="createAccButton">Crete Account</button>
       <p id="warningMessage" style=""></p>
-      
+
       <span>Already Have Account? </span>
       <a href="../index.html">Log In</a>
     </div>
 
-    <script>
-       
-
-      document
-        .getElementById("createAccButton")
-        .addEventListener("click", () => {
-          const userName = document.getElementById("username").value;
-          const Userpassword = document.getElementById("password").value;
-
-          let userInfo = JSON.parse(localStorage.getItem("userInfo")) || [{}];
-
-          console.log("user: ", userInfo);
-          let foundPrevUser = false;
-          if ((userName.length >= 1) & (userName.length >= 1)) {
-            userInfo.forEach((user) => {
-              if (user.name == userName) {
-                foundPrevUser = true;
-              }
-            });
-          }
-
-          if (foundPrevUser == true) {
-                document.getElementById("warningMessage").innerText =
-              "Sorry This UserName Already Exist, Try Again Please!";
-              setTimeout(() => {
-                  
-
-                        document.getElementById("warningMessage").innerText = "";
-
-            }, 1000);
-
-
-          } else if ((userName.length >= 1) && (userName.length >= 1)) {
-            userInfo.push({
-              name: userName,
-              password: Userpassword
-            });
-            localStorage.setItem("userInfo", JSON.stringify(userInfo));
-
-
-
-            document.getElementById("warningMessage").innerText =
-            "YEsssssssssssss, Succesfull created. Redirecting To LogIn page"
-              setTimeout(() => {
-                  
-                    
-                        document.getElementById("warningMessage").innerText = "";
-                        window.location.href = "../index.html";
-
-            }, 1000);
-          }
-          else {
-            document.getElementById("warningMessage").innerText =
-            " Please fill up the form correctly";
-              setTimeout(() => {
-                  
-                    
-                        document.getElementById("warningMessage").innerText = "";
-                         
-
-            }, 1000);
-          }
-        });
-    </script>
+    <script src="../dist/reg.js"></script>
   </body>
 </html>
